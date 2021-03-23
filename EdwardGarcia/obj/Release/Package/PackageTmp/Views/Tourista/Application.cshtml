@@ -2,6 +2,9 @@
 @{
     Layout = null;
 }
+
+
+
 <html>
 
 <head>
@@ -11,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 
-    <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
           integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
           crossorigin="anonymous" />
@@ -29,6 +32,7 @@
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
     <style>
+
 
         * {
             margin: 0 auto;
@@ -64,51 +68,62 @@
         .grid-item--width2 {
             width: 400px;
         }
+
+        .touristaMap {
+            min-height: 100vh;
+            max-height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax {
+            min-height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.9;
+        }
+
+
+        .caption {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            color: #000;
+        }
+
+            .caption span.border {
+                background-color: #111;
+                color: #fff;
+                padding: 18px;
+                font-size: 25px;
+                letter-spacing: 10px;
+            }
     </style>
 </head>
-
-
 <body>
 
 
+    <div class="parallax" style="background-image: url(/assets/tourista/Tourist1.jpg);">
+        <div class="caption">
 
-
-    <div class="row">
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="container">
-
-            </div>
-        </div>
-        <div class="col-sm-9">
-
+                <a class="nav-link js-scroll-trigger" style="font-weight: 1000;"
+                   href="#mapid">Home</a>
         </div>
     </div>
 
 
     <section id="contact">
-        <div style="text-align: center; margin-bottom: 50px; ">
-            <h1 style="font-weight: 1000; ">Tourista!</h1>
-            <div>
-                <h7 style="font-style: italic;">Tap on the map to know more!</h7>
+
+        <div class="container">
+
+            <div id="mapid" class="touristaMap">
             </div>
-        </div>
-
-        <div class="container">
-            <div id="mapid" style="height: 500px; width:auto; margin-top:30px"></div>
-
-        </div>
-
-    </section>
-
-
-
-    <section id="contact">
-
-        <div class="container">
             <div style="text-align: center; margin-bottom: 50px; ">
                 <h1 style="font-weight: 1000; ">Images</h1>
                 <div>
@@ -152,6 +167,11 @@
 
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js "></script>
+
+    <script src="~/assets/js/new-age.js"></script>
+
 </body>
 
 </html>
@@ -171,8 +191,6 @@
     var c = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
     var map = L.map('mapid');
-
-
 
     var maxBounds = [
         [21.116625, 131.175528],
@@ -211,9 +229,9 @@
     }
 
     function loadMap() {
-        map.setView([14.642285, 121.050823], 30);
         map.setMaxBounds(maxBounds);
         map.fitBounds(maxBounds);
+        map.setView([14.642285, 121.050823], 7);
         var tiles = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: 'NOT NEEDED',
         }).addTo(map);
@@ -255,24 +273,27 @@
                     //FINAL_LONGITUDE = myObj.longitude;
                     FINAL_LOCATION = myObj.city;
 
-                    FINAL_LOCATION5 = myObj.results[0].locations[0].adminArea5;
+                  //  FINAL_LOCATION5 = myObj.results[0].locations[0].adminArea5;
                     FINAL_LOCATION3 = myObj.results[0].locations[0].adminArea3;
                     FINAL_LOCATION4 = myObj.results[0].locations[0].adminArea4;
 
 
-                  //  FINAL_CODE = myObj.principalSubdivisionCode;
+                    //  FINAL_CODE = myObj.principalSubdivisionCode;
                     FINAL_PRINCIPALSUBDIVISION = myObj.principalSubdivision;
                     if (FINAL_LOCATION == "") {
                         FINAL_LOCATION = myObj.locality;
-                    }   
+                    }
 
 
-                    document.getElementById("demo").innerHTML = FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
+                  //  document.getElementById("demo").innerHTML = FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
+                    document.getElementById("demo").innerHTML =FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
 
-                    console.log(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
-                    LoadMyImages(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+                 //   console.log(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+              //      LoadMyImages(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+                    LoadMyImages(FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+
                     executeMasonry();
-                   // alert(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3);
+                    // alert(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3);
                 }
             };
         }
@@ -285,7 +306,7 @@
             })
         }
 
-       
+
     }
 
     function LoadMyImages(cityName) {
@@ -334,7 +355,7 @@
             text: 'Created by Edward Garcia',
             imageUrl: $(this)[0].getAttribute('src'),
             html:
-                "Click <a href='" + $(this)[0].getAttribute('longdesc')+"' target='blank'>here</a> to visit the source.",
+                "Click <a href='" + $(this)[0].getAttribute('longdesc') + "' target='blank'>here</a> to visit the source.",
 
         })
 

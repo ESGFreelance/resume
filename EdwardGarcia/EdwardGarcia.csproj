@@ -138,6 +138,8 @@
     <Content Include="assets\js\new-age.js" />
     <Content Include="assets\styles\style.css" />
     <Content Include="assets\EdwardResume.mp4" />
+    <Content Include="assets\tourista\Tourist1.jpg" />
+    <Content Include="assets\tourista\Tourist2.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -164,6 +166,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Tourista\Application.cshtml" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

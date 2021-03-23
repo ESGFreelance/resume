@@ -86,7 +86,7 @@ namespace EdwardGarcia.Controllers
         public ActionResult ScrapDataFinal(string paramCity)
         {
             string passData = string.Empty;
-            string link = $"https://www.bing.com/images/search?q={paramCity} tourism -facebook -youtube";
+            string link = $"https://www.bing.com/images/search?q={paramCity} Tourist Spots";
 
             if (paramCity == "" || paramCity == null || paramCity == string.Empty || paramCity==" ")
             {

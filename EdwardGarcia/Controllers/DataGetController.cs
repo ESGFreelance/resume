@@ -95,11 +95,11 @@ namespace EdwardGarcia.Controllers
             else
             {
                 HtmlWeb web = new HtmlWeb();
-                List<string> mySearchCategory = new List<string>();
+                //List<string> mySearchCategory = new List<string>();
                 List<string> myContentImages = new List<string>();
-                mySearchCategory.Add("Culture");
-                mySearchCategory.Add("Travel");
-                mySearchCategory.Add("Tourist Destinations");
+                //mySearchCategory.Add("Culture");
+                //mySearchCategory.Add("Travel");
+                //mySearchCategory.Add("Tourist Destinations");
 
                 Random random = new Random();
             //    string link = $"https://www.bing.com/images/search?q={paramCity} Philippines Tourist -traveloka -facebook -explore.traveloka -detourista -youtube -slideshare";

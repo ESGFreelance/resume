@@ -110,22 +110,38 @@
 
 
     @*<div class="parallax" style="background-image: url(/assets/tourista/Tourist1.jpg);">
-        <div class="caption">
+            <div class="caption">
 
-                <a class="nav-link js-scroll-trigger" style="font-weight: 1000;"
-                   href="#mapid">Home</a>
-        </div>
-    </div>*@
+                    <a class="nav-link js-scroll-trigger" style="font-weight: 1000;"
+                       href="#mapid">Home</a>
+            </div>
+        </div>*@
 
 
     <section id="contact">
 
         <div class="container">
+            <div style="text-align: center; ">
+                <div>
+                    <h7 style="font-style: italic;">Click a tagged location or tap the map! Discover more and see the beauty of the Philippines!</h7>
+                </div>
+            </div>
+            <div style="margin:5px;">
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(0);">Cavite</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(1);">Palawan</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(2);">Sorsogon</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(3);">Calabarzon Perez</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(4);">Western Visayas Roxas City</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(8);">Sultan Kudarat</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(5);">Bicol Region Matnog</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(6);">Batangas</a>
+                <a class="btn btn btn-dark btn-md" onclick="CustomButton(7);">Mimaropa Puerto Galera</a>
+            </div>
 
             <div id="mapid" class="touristaMap">
             </div>
             <div style="text-align: center; margin-bottom: 50px; ">
-                <h1 style="font-weight: 1000; ">Images</h1>
+                <h1 style="font-weight: 1000; "></h1>
                 <div>
                     <h7 style="font-style: italic;">See their culture, tradition, and tourist desinations by clicking the image!</h7>
                 </div>
@@ -170,7 +186,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js "></script>
 
-    <script src="~/assets/js/new-age.js"></script>
 
 </body>
 
@@ -197,13 +212,6 @@
         [4.991861, 115.976455]
     ];
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
 
     function showPosition(position) {
         clearMarker();
@@ -250,6 +258,44 @@
     });
 
 
+    function CustomButton(myIndex) {
+
+        var myLatitude = [
+            14.492525060337856,
+            9.903921416774978,
+            12.704650508287893,
+            14.205813635597496,
+            11.490790980367056,
+            12.557244424358855,
+            13.939398640275055,
+            13.368243250897299,
+            6.413566092994126
+        ];
+
+        var myLongitude = [
+            120.90625762939453,
+            118.69079589843751,
+            124.002685546875,
+            121.9365692138672,
+            122.73101806640626,
+            124.05075073242189,
+            121.18743896484376,
+            120.91003417968751,
+            124.32678222656251
+        ]
+
+
+        clearMarker();
+
+        markerAutoLocation = L.marker([myLatitude[myIndex], myLongitude[myIndex]]).addTo(map);
+        FINAL_LATITUDE = myLatitude[myIndex];
+        FINAL_LONGITUDE = myLongitude[myIndex];
+        console.log(myLatitude[myIndex] + "," + myLongitude[myIndex]);
+        provideFinalInformation();
+        map.setView([myLatitude[myIndex], myLongitude[myIndex]], 10);
+    }
+
+
     function provideFinalInformation() {
         var query = "latitude=" + FINAL_LATITUDE + "&longitude=" + FINAL_LONGITUDE + "&localityLanguage=en";
         var myquery = "https://www.mapquestapi.com/geocoding/v1/reverse?key=70lT1MGyIG5Zv5p3crzEPBj6zWqGG6GO&location=" + FINAL_LATITUDE + "%2C" + FINAL_LONGITUDE + "&outFormat=json&thumbMaps=false";
@@ -273,7 +319,7 @@
                     //FINAL_LONGITUDE = myObj.longitude;
                     FINAL_LOCATION = myObj.city;
 
-                  //  FINAL_LOCATION5 = myObj.results[0].locations[0].adminArea5;
+                    //  FINAL_LOCATION5 = myObj.results[0].locations[0].adminArea5;
                     FINAL_LOCATION3 = myObj.results[0].locations[0].adminArea3;
                     FINAL_LOCATION4 = myObj.results[0].locations[0].adminArea4;
 
@@ -285,11 +331,11 @@
                     }
 
 
-                  //  document.getElementById("demo").innerHTML = FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
-                    document.getElementById("demo").innerHTML =FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
+                    //  document.getElementById("demo").innerHTML = FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
+                    document.getElementById("demo").innerHTML = FINAL_LOCATION3 + ' ' + FINAL_LOCATION4; //THIS IS FOR TEST PURPOSE ONLY
 
-                 //   console.log(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
-              //      LoadMyImages(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+                    //   console.log(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
+                    //      LoadMyImages(FINAL_LOCATION5 + ' ' + FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
                     LoadMyImages(FINAL_LOCATION3 + ' ' + FINAL_LOCATION4);
 
                     executeMasonry();

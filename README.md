@@ -9,3 +9,7 @@ Tools for development: **MVC5**,
 **Bootstrap**,
 **MapQuest Developer API**,
 **Leaflet**
+
+**USE CASE**<br />
+![USE CASE TOURISTA](https://user-images.githubusercontent.com/42932255/112704055-42365500-8ed4-11eb-84bf-f2570ef6ac2f.png)
+
